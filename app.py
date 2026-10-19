@@ -3,13 +3,20 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import os
 
 # -------------------------------
 # Load saved files
 # -------------------------------
-model = joblib.load("diamond_model.pkl")
-scaler = joblib.load("diamond_scaler.pkl")
-all_columns = joblib.load("diamond_columns.pkl")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+model_path = os.path.join(BASE_DIR, "diamond_model.pkl")
+scaler_path = os.path.join(BASE_DIR, "diamond_scaler.pkl")
+columns_path = os.path.join(BASE_DIR, "diamond_columns.pkl")
+
+model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
+feature_columns = joblib.load(columns_path)
 
 TARGET = "price"
 
